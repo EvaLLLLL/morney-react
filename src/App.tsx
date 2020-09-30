@@ -12,7 +12,7 @@ import NoMatch from './Views/NoMatch';
 import styled from 'styled-components';
 
 const AppWrapper = styled.div`
-	color: #333
+	background: #f5f5f5
 `;
 
 function App() {

@@ -29,6 +29,9 @@ body {
 button {
 	font-family: inherit;
 }
+:focus {
+	outline: none;
+}
 .icon{
 	width: 1.5em;
 	height: 1.5em;
