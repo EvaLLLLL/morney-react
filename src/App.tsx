@@ -5,7 +5,10 @@ import {
 	Route,
 	Redirect,
 } from 'react-router-dom';
-import Layout from './components/Layout';
+import Money from './Views/Money';
+import Statistics from './Views/Statistics';
+import Tags from './Views/Tags';
+import NoMatch from './Views/NoMatch';
 
 function App() {
 	return (
@@ -26,34 +29,6 @@ function App() {
 				</Route>
 			</Switch>
 		</Router>
-	);
-}
-
-function NoMatch() {
-	return <div>页面不存在，请检查地址是否输入有误</div>;
-}
-
-function Money() {
-	return (
-		<Layout>
-			<h2>记账页面</h2>
-		</Layout>
-	);
-}
-
-function Tags() {
-	return (
-		<Layout>
-			<h2>标签页面</h2>
-		</Layout>
-	);
-}
-
-function Statistics() {
-	return (
-		<Layout>
-			<h2>统计页面</h2>
-		</Layout>
 	);
 }
 
