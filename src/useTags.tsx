@@ -34,7 +34,17 @@ const useTags = () => {
 		setTags(tagsClone);
 	};
 	
-	return {tags, setTags, findTag, updateTag, findTagIndex};
+	const deleteTag = (id: number) => {
+		// 获取要改的 tag 的下标
+		const index = findTagIndex(id);
+		// 深拷贝 tags 得到 tagsClone
+		const tagsClone = JSON.parse(JSON.stringify(tags));
+		// 把 tagsClone 的第 index 删掉
+		tagsClone.splice(index, 1);
+		setTags(tagsClone);
+	};
+	
+	return {tags, setTags, findTag, updateTag, findTagIndex, deleteTag};
 };
 
 export {useTags};

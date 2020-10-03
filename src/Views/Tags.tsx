@@ -25,7 +25,7 @@ const TagList = styled.ol`
 		}
 `;
 
-const Tags:React.FC = () => {
+const Tags: React.FC = () => {
 	const {tags} = useTags();
 	return (
 		<Layout>
@@ -33,9 +33,9 @@ const Tags:React.FC = () => {
 				{tags.map(
 					tag =>
 						<li key={tag.id}>
-							<Link to={'/tags/'+ tag.id}>
-							<span className="oneLine">{tag.id}{tag.name}</span>
-							<Icon name="right"/>
+							<Link to={'/tags/' + tag.id}>
+								<span className="oneLine">{tag.name}</span>
+								<Icon name="right"/>
 							</Link>
 						</li>
 				)}
