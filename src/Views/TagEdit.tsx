@@ -1,21 +1,31 @@
 import React from 'react';
-import {useTags} from '../useTags';
+import {useTags} from 'useTags';
 import {useParams} from 'react-router-dom';
-import {Layout} from '../components/Layout';
-import Icon from '../components/Icon';
-import {Button} from '../components/Button';
+import {Layout} from 'components/Layout';
+import Icon from 'components/Icon';
+import {Button} from 'components/Button';
 import styled from 'styled-components';
+import {Input} from 'components/Input';
+import {Center} from 'components/Center';
+import {Space} from 'components/Space';
 
 type Params = {
 	id: string
 }
 
 const TopBar = styled.header`
+	background: white;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	line-height: 20px;
 	padding: 14px;
+`;
+
+const InputWrapper = styled.div`
+	background: white;
+	padding: 0 16px;
+	margin-top: 8px;
 `;
 
 const TagEdit: React.FC = () => {
@@ -29,15 +39,17 @@ const TagEdit: React.FC = () => {
 				<span>编辑标签</span>
 				<Icon/>
 			</TopBar>
-			<div>
-				<label>
-					<span>标签名</span>
-					<input type="text" placeholder="标签名"/>
-				</label>
-			</div>
-			<div>
+			<InputWrapper>
+				<Input value={tag.name}
+				       label="标签名" type="text"
+				       placeholder="标签名"/>
+			</InputWrapper>
+			<Space/>
+			<Space/>
+			<Space/>
+			<Center>
 				<Button>删除标签</Button>
-			</div>
+			</Center>
 		</Layout>
 	);
 };

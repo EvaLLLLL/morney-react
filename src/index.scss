@@ -27,7 +27,10 @@ body {
 	line-height: 1.2;
 }
 button {
-	font-family: inherit;
+	font: inherit;
+}
+input {
+	font: inherit;
 }
 :focus {
 	outline: none;
