@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
 import {useTags} from '../../useTags';
-import {createID} from 'lib/createID';
 
 type Props = {
 	value: number[];
@@ -9,14 +8,9 @@ type Props = {
 }
 
 const TagsSection: React.FC<Props> = (props) => {
-	const {tags, setTags} = useTags();
+	const {tags, addTag} = useTags();
 	const selectedTagIds = props.value;
-	const onAddTag = () => {
-		const tagName = window.prompt('请输入新标签的名称');
-		if (tagName !== null) {
-			setTags([...tags, {id: createID(), name:tagName}]);
-		}
-	};
+	
 	const onToggleTag = (tagId: number) => {
 		if (selectedTagIds.indexOf(tagId) >= 0) {
 			props.onChange(selectedTagIds.filter(t => t !== tagId));
@@ -45,7 +39,7 @@ const TagsSection: React.FC<Props> = (props) => {
 					)
 				}
 			</ol>
-			<button onClick={onAddTag}>新增标签</button>
+			<button onClick={addTag}>新增标签</button>
 		</Wrapper>
 	);
 };
