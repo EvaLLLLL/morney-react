@@ -3,28 +3,28 @@ import React from 'react';
 import {useTags} from '../../useTags';
 
 type Props = {
-	value: string[];
-	onChange: (value: string[]) => void;
+	value: number[];
+	onChange: (selected: number[]) => void;
 }
 
 const TagsSection: React.FC<Props> = (props) => {
 	const {tags, setTags} = useTags();
-	const selectedTags = props.value;
+	const selectedTagIds = props.value;
 	const onAddTag = () => {
 		const tagName = window.prompt('请输入新标签的名称');
 		if (tagName !== null) {
-			setTags([...tags, tagName]);
+			setTags([...tags, {id: Math.random(), name:tagName}]);
 		}
 	};
-	const onToggleTag = (tag: string) => {
-		if (selectedTags.indexOf(tag) >= 0) {
-			props.onChange(selectedTags.filter(t => t !== tag));
+	const onToggleTag = (tagId: number) => {
+		if (selectedTagIds.indexOf(tagId) >= 0) {
+			props.onChange(selectedTagIds.filter(t => t !== tagId));
 		} else {
-			props.onChange([...selectedTags, tag]);
+			props.onChange([...selectedTagIds, tagId]);
 		}
 	};
-	const getClass = (tag: string) => {
-		return selectedTags.indexOf(tag) >= 0 ? 'selected' : '';
+	const getClass = (tagId: number) => {
+		return selectedTagIds.indexOf(tagId) >= 0 ? 'selected' : '';
 	};
 	return (
 		<Wrapper>
@@ -32,12 +32,12 @@ const TagsSection: React.FC<Props> = (props) => {
 				{
 					tags.map(tag => {
 							return (
-								<li key={tag}
+								<li key={tag.id}
 								    onClick={() => {
-									    onToggleTag(tag);
+									    onToggleTag(tag.id);
 								    }}
-								    className={getClass(tag)}>
-									{tag}
+								    className={getClass(tag.id)}>
+									{tag.name}
 								</li>
 							);
 						}
