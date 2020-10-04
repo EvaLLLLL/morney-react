@@ -1,15 +1,26 @@
 import styled from 'styled-components';
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {useTags} from '../../hooks/useTags';
 
 type Props = {
 	value: number[];
 	onChange: (selected: number[]) => void;
+	scrollTop?: number
 }
 
 const TagsSection: React.FC<Props> = (props) => {
 	const {tags, addTag} = useTags();
 	const selectedTagIds = props.value;
+	const mainRef = useRef<HTMLDivElement>(null);
+	
+	useEffect(() => {
+		setTimeout(() => {
+			if (!mainRef.current) {
+				return;
+			}
+			mainRef.current.scrollTop = props.scrollTop!;
+		}, 0);
+	}, [props.scrollTop]);
 	
 	const onToggleTag = (tagId: number) => {
 		if (selectedTagIds.indexOf(tagId) >= 0) {
@@ -22,7 +33,7 @@ const TagsSection: React.FC<Props> = (props) => {
 		return selectedTagIds.indexOf(tagId) >= 0 ? 'selected' : '';
 	};
 	return (
-		<Wrapper>
+		<Wrapper ref={mainRef}>
 			<ol>
 				{
 					tags.map(tag => {
@@ -45,11 +56,10 @@ const TagsSection: React.FC<Props> = (props) => {
 };
 
 const Wrapper = styled.section`
-	flex-grow: 1;
+	overflow: scroll;
 	background: #FFFFFF;
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
+	display: flex;flex-grow: 1;flex-shrink: 1;flex-direction: column;
+	//justify-content: flex-end;
 	align-items: flex-start;
 	padding: 12px 16px;
 	> ol {
@@ -76,5 +86,9 @@ const Wrapper = styled.section`
 		margin-top: 8px;
 	}
 `;
+
+TagsSection.defaultProps = {
+	scrollTop: 0
+};
 
 export {TagsSection};
