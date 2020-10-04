@@ -10,6 +10,9 @@ const NumberPadWrapper = styled.section`
 		text-align: right;
 		padding: 0 16px;
 		box-shadow: inset 0px -2px 3px rgba(0, 0, 0, 0.25);
+		@media(max-width: 500px) {
+			line-height: 50px;
+		}
 	}
 	> .pad {
 		> button {
@@ -53,6 +56,14 @@ const NumberPadWrapper = styled.section`
 			}
 			&:nth-child(14) {
 				background: #A9A9A9;
+			}
+		}
+		@media(max-width: 500px){
+			> button {
+				height: 48px;
+				&.ok {
+					height: 96px;
+				}
 			}
 		}
 	}
