@@ -1,9 +1,10 @@
 import {useEffect, useState} from 'react';
 import {createID} from 'lib/createID';
-import {useUpdate} from './hooks/useUpdate';
+import {useUpdate} from './useUpdate';
 
 const useTags = () => {
 	const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
+	
 	useEffect(() => {
 		let localTags = JSON.parse(window.localStorage.getItem('tags') || '[]');
 		if (localTags.length === 0) {
