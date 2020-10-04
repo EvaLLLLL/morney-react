@@ -28,9 +28,12 @@ const Money = () => {
 		setSelected({...selected, ...obj});
 	
 	const submit = () => {
-		addRecord(selected);
-		alert('记录已保存');
-		setSelected(defaultFormData);
+		if (addRecord(selected)) {
+			alert('记录已保存');
+			setSelected(defaultFormData);
+		} else {
+			alert('金额不能为空，请输入金额');
+		}
 	};
 	
 	return (

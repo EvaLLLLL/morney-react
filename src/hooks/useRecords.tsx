@@ -23,8 +23,12 @@ const useRecords = () => {
 	}, [records]);
 	
 	const addRecord = (newRecord: newRecordItem) => {
+		if (newRecord.amount <= 0) {
+			return false;
+		}
 		const record = {...newRecord, createdAt: (new Date()).toISOString()};
 		setRecords([...records, record]);
+		return true;
 	};
 	
 	return {records, addRecord};
